@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Dhevira Almahdini</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar (sama dengan index.html) -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Dhevira Almahdini</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Tentang Saya</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-5 mt-5">
+        <div class="container">
+            <h2 class="text-center fw-bold my-5">Portfolio Saya</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="text-center mb-4">
+                <button class="btn btn-outline-dark filter-btn active" data-filter="all">Semua</button>
+                <button class="btn btn-outline-dark filter-btn" data-filter="wedding">Wedding</button>
+                <button class="btn btn-outline-dark filter-btn" data-filter="portrait">Florist</button>
+                <button class="btn btn-outline-dark filter-btn" data-filter="landscape">Freelance</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="row g-4" id="gallery-grid">
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="wedding">
+                    <img src="heart.jpeg" class="img-fluid gallery-img" alt="Wedding 1">
+                </div>
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="portrait">
+                    <img src="blip.jpeg" class="img-fluid gallery-img" alt="Portrait 1">
+                </div>
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="landscape">
+                    <img src="blui.jpeg" class="img-fluid gallery-img" alt="Landscape 1">
+                </div>
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="wedding">
+                    <img src="lipilop.jpeg" class="img-fluid gallery-img" alt="Wedding 2">
+                </div>
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="portrait">
+                    <img src="wjeij.jpeg" class="img-fluid gallery-img" alt="Portrait 2">
+                </div>
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="landscape">
+                    <img src="frgbhgf.jpeg" class="img-fluid gallery-img" alt="Landscape 2">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (sama dengan index.html) -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-twitter fa-2x"></i></a>
+            <hr class="bg-white-50 my-3">
+            <p>&copy; 2025 Virlorist. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Image Modal (Lightbox) -->
+    <div class="modal fade" id="imageModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark">
+                <div class="modal-body p-0">
+                    <img src="" id="modalImage" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const galleryImages = document.querySelectorAll('.gallery-img');
+            const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+            const modalImage = document.getElementById('modalImage');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const filter = button.getAttribute('data-filter');
+                    galleryItems.forEach(item => {
+                        item.style.display = (filter === 'all' || item.getAttribute('data-category') === filter) ? 'block' : 'none';
+                    });
+                });
+            });
+
+            galleryImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    modalImage.src = img.src;
+                    modal.show();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
